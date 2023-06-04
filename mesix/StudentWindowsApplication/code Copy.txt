@@ -1,0 +1,275 @@
+                                                                     HOME//FORM 
+namespace StudentWindowsApplication
+{
+    public partial class Home : Form
+    {
+        public Home()
+        {
+            InitializeComponent();
+        }
+
+        ctrlSearchFee sf;
+        
+        private void studentFeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            sf = new ctrlSearchFee();
+            
+            sf.Show();
+            
+        }
+
+        private void studentAdressToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Student_Adress st = new Student_Adress();
+            st.TopMost = true;
+            st.Show();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //sf.Close();
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            HideAllControls();
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); // Add an Application Setting.
+            string schoolName = "A One School System";//ConfigurationManager.AppSettings["schoolname"];
+
+            
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dashBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip11_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void classToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHideControls(ctrlClass1);
+        }
+        private void ShowHideControls(UserControl currentControl)
+        {
+
+            var controls = this.pnlModule.Controls.Cast<Control>();
+            foreach (var ctrl in controls)
+            {
+                if (ctrl.GetType().BaseType.Name == typeof(UserControl).Name)
+                    ctrl.Hide();
+            }
+            if(currentControl!=null)
+            currentControl.Show();
+
+
+        }
+
+        private void HideAllControls()
+        {
+
+            var controls = this.pnlModule.Controls.Cast<Control>();
+            foreach (var ctrl in controls)
+            {
+                if (ctrl.GetType().BaseType.Name == typeof(UserControl).Name)
+                    ctrl.Hide();
+            }
+        }
+
+        private void accountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHideControls(null);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.pictureBox1.BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.pictureBox1.BorderStyle = BorderStyle.None;
+        }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            ShowHideControls(adminControl1);
+        }
+
+        private void lblAdminName_Click(object sender, EventArgs e)
+        {
+            LogIn lg = new LogIn();
+            lg.Show();
+           // this.lblAdminName.BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void accountToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+           ShowHideControls(ctrlCity1);
+        }
+
+        private void adminControl2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void subjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHideControls(ctrlSubjects1);
+        }
+
+        private void studentFeeToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ShowHideControls(ctrlSearchFee1);
+
+        }
+
+        private void libraryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHideControls(ctrlCurriculum1);
+        }
+    }
+}
+
+                                                                          Subject//FORM
+
+namespace StudentWindowsApplication
+{
+    public partial class ctrlSubjects : UserControl
+    {
+        public ctrlSubjects()
+        {
+            InitializeComponent();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            int classid = Convert.ToInt32(cbxClass.SelectedValue);
+            string subject = txtSubject.Text;
+            SubjectDAL sd = new SubjectDAL();
+            sd.newsubjest(subject, classid);
+            MessageBox.Show("Data Updated");
+            //ctrlSubjects ns = new ctrlSubjects();
+            //ns.Close();
+        }
+
+        private void ctrlSubjects_Load(object sender, EventArgs e)
+        {
+            CreatSubject();
+        }
+        private void CreatSubject()
+        {
+            ClassDAL cd = new ClassDAL();
+            cbxClass.DataSource = cd.GetClasses();
+            cbxClass.DisplayMember = "CName";
+            cbxClass.ValueMember = "Id";
+        }
+
+
+
+    }
+}
+                                                                            SEARCH ??FORM
+
+namespace StudentWindowsApplication
+{
+    public partial class ctrlSearchFee : UserControl
+    {
+        public ctrlSearchFee()
+        {
+            InitializeComponent();
+        }
+
+        private void txtsearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchTextValue = txtsearch.Text;
+            StudentDAL sDal = new StudentDAL();
+            dgvSearchedStudents.DataSource = sDal.SearchStudentList(searchTextValue);
+
+        }
+
+        private void dgvSearchedStudents_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvSearchedStudents.SelectedRows.Count > 0)
+            {
+                
+
+                this.ctrlFee1.studentId = Convert.ToInt32(dgvSearchedStudents.SelectedRows[0].Cells[0].Value);
+                this.ctrlFee1.name = dgvSearchedStudents.SelectedRows[0].Cells[1].Value.ToString();
+                this.ctrlFee1.RollNum = dgvSearchedStudents.SelectedRows[0].Cells[2].Value.ToString();
+                this.ctrlFee1.ClassNum = dgvSearchedStudents.SelectedRows[0].Cells[3].Value.ToString();
+                this.ctrlFee1.home = dgvSearchedStudents.SelectedRows[0].Cells[4].Value.ToString();
+                this.ctrlFee1.city = dgvSearchedStudents.SelectedRows[0].Cells[5].Value.ToString();
+                this.pnlSearch.Hide();
+                this.pnlFeectl.Show();
+                this.ctrlFee1.LoadAllValues();
+                pnlFeectl.Dock = DockStyle.Left;
+                //this.ctrlFee1.Show();
+
+
+
+
+
+            }
+        }
+
+        private void ctrlSearchFee_Load(object sender, EventArgs e)
+        {
+            //this.ctrlFee1.Hide();
+            this.pnlFeectl.Hide();
+        }
+
+        private void btnCloseFeeForm_Click(object sender, EventArgs e)
+        {
+            this.pnlFeectl.Hide();------
+            this.pnlSearch.Show();
+            
+        }
+    }
+}                                                 
+                                                                
