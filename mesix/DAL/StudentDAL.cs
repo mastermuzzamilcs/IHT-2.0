@@ -647,6 +647,7 @@ namespace DAL
         public DateTime INSR_DTE { get; set; }
         public decimal InvoiceAmount { get; set; }
         public bool Status { get; set; }
+        public string Comments { get; set; }
         //public List<FeesPaidDetail> RcblDetail { get; set; }
     }
     public class FeesPaidDetail

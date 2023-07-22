@@ -227,7 +227,7 @@ namespace StudentWindowsApplication
                 stu.Email = String.Empty;
                 stu.FatherName = txtFatherName.Text;
                 stu.FOccupation = txtFOccupation.Text;
-                stu.Roll = Convert.ToInt32(txtRollNo.Text);
+                stu.Roll =  Convert.ToInt32(txtRollNo.Text);
                 stu.ClassId = Convert.ToInt32(cbxClass.SelectedValue);
                 stu.SectionId = Convert.ToInt32(cbxSection.SelectedValue);
                 //stu.CityId = Convert.ToInt32(cbxCity.SelectedValue);//ENUM create kro
@@ -294,6 +294,11 @@ namespace StudentWindowsApplication
             if (cbxSection.SelectedValue == null || Convert.ToInt32(cbxSection.SelectedValue) <= 0)
             {
                 ErrorMsgs.Add("Student Section cannot be Null or Empty");
+                isFormValid = false;
+            }
+            if (txtRollNo.Text == null || txtRollNo.Text==string.Empty)
+            {
+                ErrorMsgs.Add("Student Roll Number cannot be Null or Empty");
                 isFormValid = false;
             }
             if (!isFormValid)

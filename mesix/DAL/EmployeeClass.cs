@@ -849,6 +849,7 @@ namespace DAL
                     item.EmpID = Convert.ToInt32(sdr["EmpID"]);
                     item.InvoiceDate = Convert.ToDateTime(sdr["InvcDate"]);
                     item.InvoiceAmount = Convert.ToDecimal(sdr["InvcAmount"]);
+                    item.Comments = sdr["Comments"].ToString();
                     item.Status = Convert.ToBoolean(sdr["Status"]);
 
                     fees.Add(item);
@@ -860,6 +861,34 @@ namespace DAL
             catch (Exception)
             {
                 return new List<SalaryInvoiceDetail>();
+            }
+        }
+        public SalaryInvoiceDetail GetInvoiceByID(int InvoiceID)
+        {
+            SalaryInvoiceDetail item = new SalaryInvoiceDetail();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SMS_SLRY_INVC_S3", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@invoiceid", InvoiceID);
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    item.InvoiceID = Convert.ToInt32(sdr["invc_id"]);
+                    item.EmpID = Convert.ToInt32(sdr["EmpID"]);
+                    item.InvoiceDate = Convert.ToDateTime(sdr["InvcDate"]);
+                    item.InvoiceAmount = Convert.ToDecimal(sdr["InvcAmount"]);
+                    item.Comments = sdr["Comments"].ToString();
+                    item.Status = Convert.ToBoolean(sdr["Status"]);
+                }
+                sdr.Close();
+                con.Close();
+                return item;
+            }
+            catch (Exception)
+            {
+                return new SalaryInvoiceDetail();
             }
         }
     }
@@ -876,6 +905,7 @@ public class SalaryInvoiceDetail
     public DateTime INSR_DTE { get; set; }
     public decimal InvoiceAmount { get; set; }
     public bool Status { get; set; }
+    public string Comments { get; set; }
     //public List<FeesPaidDetail> RcblDetail { get; set; }
 }
 public class children

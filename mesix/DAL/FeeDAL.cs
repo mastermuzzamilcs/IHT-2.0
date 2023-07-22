@@ -165,6 +165,7 @@ namespace DAL
                     item.StudentID = Convert.ToInt32(sdr["StudentID"]);
                     item.InvoiceDate = Convert.ToDateTime(sdr["InvcDate"]);
                     item.InvoiceAmount = Convert.ToDecimal(sdr["InvcAmount"]);
+                    item.Comments = sdr["Comments"].ToString();
                     item.Status = Convert.ToBoolean(sdr["Status"]);
 
                     fees.Add(item);
@@ -287,6 +288,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@studentid", i.StudentID);
                     cmd.Parameters.AddWithValue("@invcdate", i.InvoiceDate);
                     cmd.Parameters.AddWithValue("@invcamount", i.InvoiceAmount);
+                    cmd.Parameters.AddWithValue("@comments", i.Comments);
                     cmd.Parameters.AddWithValue("@status", i.Status);
                     cmd.Parameters.AddWithValue("@isFee", IsFee);
                 }
@@ -299,6 +301,44 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@isFee", IsFee);
                 }
 
+                con.Open();
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    con.Close();
+                    return true;
+                }
+                con.Close();
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool UpdateInvoice(bool IsFee, FeesInvoiceDetail i = null, SalaryInvoiceDetail s = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SMS_FEES_SLRY_INVC_U", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (IsFee)
+                {
+                    cmd.Parameters.AddWithValue("@invoiceid", i.InvoiceID);
+                    cmd.Parameters.AddWithValue("@invcdate", i.InvoiceDate);
+                    cmd.Parameters.AddWithValue("@invcamount", i.InvoiceAmount);
+                    cmd.Parameters.AddWithValue("@comments", i.Comments);
+                    cmd.Parameters.AddWithValue("@isFee", IsFee);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@invoiceid", s.InvoiceID);
+                    cmd.Parameters.AddWithValue("@invcdate", s.InvoiceDate);
+                    cmd.Parameters.AddWithValue("@invcamount", s.InvoiceAmount);
+                    cmd.Parameters.AddWithValue("@comments", s.Comments);
+                    cmd.Parameters.AddWithValue("@isFee", IsFee);
+                }
+                    
+                
                 con.Open();
                 if (cmd.ExecuteNonQuery() > 0)
                 {
@@ -349,7 +389,34 @@ namespace DAL
                 return null;
             }
         }
-
+        public FeesInvoiceDetail GetFeeInvoiceByInvoiceID(int InvoiceID)
+        {
+                    FeesInvoiceDetail item = new FeesInvoiceDetail();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SMS_FEES_INVC_S1", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@invoiceid", InvoiceID);
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    item.InvoiceID = Convert.ToInt32(sdr["invc_id"]);
+                    item.StudentID = Convert.ToInt32(sdr["StudentID"]);
+                    item.InvoiceDate = Convert.ToDateTime(sdr["Date"]);
+                    item.InvoiceAmount = Convert.ToDecimal(sdr["Amount"]);
+                    item.Comments = sdr["Comments"].ToString();
+                    item.Status = Convert.ToBoolean(sdr["Status"]);
+                }
+                sdr.Close();
+                con.Close();
+                return item;
+            }
+            catch (Exception)
+            {
+                return new FeesInvoiceDetail();
+            }
+        }
         public List<FeeCnfg> GetFeeCnfg(int sid)
         {
             List<FeeCnfg> feeCnfg = new List<FeeCnfg>();

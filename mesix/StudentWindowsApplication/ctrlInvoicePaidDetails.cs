@@ -81,6 +81,7 @@ namespace StudentWindowsApplication
             lblTotalRecieveables.Text = this.feeDetailEntity.Receivables.ToString();
             lblTotalPaid.Text = this.feeDetailEntity.Paid.ToString();
             lblTotalOutstandings.Text = this.feeDetailEntity.Outstandings.ToString();
+            this.BringToFront();
         }
         private void LoadFormData()
         {
@@ -142,6 +143,23 @@ namespace StudentWindowsApplication
             }
             return true;
         }
+
+        private void smsButtons1_Click(object sender, EventArgs e)
+        {
+            if (IsStudent)
+            {
+                GntnInvcForm gif = new GntnInvcForm(this.InvcID,this.student);
+                gif.CloseGntnInvcFormEvent += new EventHandler(log_CloseGntnInvcFormEvent);
+                gif.Show();
+            }
+            else
+            {
+                GntnInvcForm gif = new GntnInvcForm(this.InvcID, null, this.employee);
+                gif.CloseGntnInvcFormEvent += new EventHandler(log_CloseGntnInvcFormEvent);
+                gif.Show();
+            }
+        }
+
         private void btnCollectFee_Click(object sender, EventArgs e)
         {
             if (IsStudent)
@@ -174,6 +192,13 @@ namespace StudentWindowsApplication
         private void log_CloseCtrlEvent(object sender, EventArgs e)
         {
             this.LoadFormData();
+            this.SetFormData();
+            
+        }
+        private void log_CloseGntnInvcFormEvent(object sender, EventArgs e)
+        {
+            this.LoadFormData();
+            this.SetFormData();
         }
     }
 }
