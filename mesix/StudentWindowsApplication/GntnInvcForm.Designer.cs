@@ -38,9 +38,9 @@
             this.dtpInvcDate = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblComments = new System.Windows.Forms.Label();
             this.txtComments = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnGntnInvc = new StudentWindowsApplication.CustomControls.SMSButtons();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -172,18 +172,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(388, 270);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(5, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 10, 3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 31);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Generate Invoice";
-            // 
             // lblComments
             // 
             this.lblComments.AutoSize = true;
@@ -203,6 +191,18 @@
             this.txtComments.Size = new System.Drawing.Size(275, 48);
             this.txtComments.TabIndex = 9;
             this.txtComments.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(5, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 10, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(221, 31);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Generate Invoice";
             // 
             // btnGntnInvc
             // 

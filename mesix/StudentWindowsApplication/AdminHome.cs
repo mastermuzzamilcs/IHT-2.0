@@ -27,7 +27,7 @@ namespace StudentWindowsApplication
         Color ColorLblTitle;
         public void InitForm()
         {
-
+            verticalNavBarControl1.NavigationItemClick += VerticalNavBarControl_NavigationItemClick;
             if (ConfigurationManager.AppSettings.Get("Theme").ToString() == "Dark")
             {
                 BackColorPnlVertical = Color.FromName(ConfigurationManager.AppSettings["ControlDarkDark"]);
@@ -393,22 +393,22 @@ namespace StudentWindowsApplication
         }
         private void HoverColorEffect(MenuStrip item)
         {
-            var controls = this.pnlVerticalMenu.Controls.Cast<Control>();
-            foreach (var ctrl in controls)
-            {
-                if (ctrl.Name == item.Name)
-                {
-                    ctrl.BackColor = Color.Green;
-                }
-                else
-                {
-                    ctrl.BackColor = Color.Transparent;
-                }
-            }
+            //var controls = this.pnlVerticalMenu.Controls.Cast<Control>();
+            //foreach (var ctrl in controls)
+            //{
+            //    if (ctrl.Name == item.Name)
+            //    {
+            //        ctrl.BackColor = Color.Green;
+            //    }
+            //    else
+            //    {
+            //        ctrl.BackColor = Color.Transparent;
+            //    }
+            //}
         }
         private void ShowAdminHomeForm()
         {
-            HoverColorEffect(menuStrip1);
+            //HoverColorEffect(menustriptest);
             HideAllControls();
             try
             {
@@ -443,7 +443,7 @@ namespace StudentWindowsApplication
         }
         private void ShowSectionsCtrl()
         {
-            HoverColorEffect(menuStrip9);
+            //HoverColorEffect(menuStrip9);
             HideAllControls();
             try
             {
@@ -466,7 +466,7 @@ namespace StudentWindowsApplication
         }
         private void ShowSubjectsCtrl()
         {
-            HoverColorEffect(menuStrip8);
+            //HoverColorEffect(menuStrip8);
             HideAllControls();
             try
             {
@@ -496,7 +496,7 @@ namespace StudentWindowsApplication
         }
         private void ShowExamsTestCtrl()
         {
-            HoverColorEffect(menuStrip7);
+            //HoverColorEffect(menuStrip7);
             HideAllControls();
             try
             {
@@ -535,7 +535,7 @@ namespace StudentWindowsApplication
         }
         private void ShowEmployeesCtrl()
         {
-            HoverColorEffect(menuStrip5);
+            //HoverColorEffect(menuStrip5);
             HideAllControls();
             try
             {
@@ -564,7 +564,7 @@ namespace StudentWindowsApplication
         }
         private void ShowExamReportsCtrl()
         {
-            HoverColorEffect(menuStrip4);
+            //HoverColorEffect(menuStrip4);
             HideAllControls();
             try
             {
@@ -594,7 +594,7 @@ namespace StudentWindowsApplication
         }
         private void ShowStudentsCtrl()
         {
-            HoverColorEffect(menuStrip11);
+            //HoverColorEffect(menuStrip11);
             HideAllControls();
             try
             {
@@ -639,7 +639,7 @@ namespace StudentWindowsApplication
         }
         private void ShowFeeCtrl()
         {
-            HoverColorEffect(menuStrip2);
+            //HoverColorEffect(menuStrip2);
             HideAllControls();
             try
             {
@@ -669,28 +669,62 @@ namespace StudentWindowsApplication
 
         private void ShowClassesCtrl()
         {
-            HoverColorEffect(menuStrip10);
             HideAllControls();
             try
             {
-                //if (!this.pnlModule.Controls.Contains(ctrlClass.Instance))
-                //{
                 ctrlClass.Instance.reset();
                 this.pnlModule.Controls.Add(ctrlClass.Instance);
-                //ctrlInvoicePaidDetails.Instance.CloseCtrlEvent += new EventHandler(log_CloseCtrlEvent);
-                //ctrlInvoicePaidDetails.Instance.LoadCtrlData(Convert.ToInt32(dgvFeeSummary.SelectedRows[0].Cells["InvoiceID"].Value), this.studentId, this.classid, Convert.ToInt32(this.RollNum), this.name);
                 ctrlClass.Instance.Dock = DockStyle.Fill;
                 ctrlClass.Instance.BringToFront();
-                //}
-                //else
-                //{
-                //    ctrlClass.Instance.BringToFront();
-                //}
             }
             catch (Exception)
             {
             }
-            //ShowHideControls(ctrlClass1);
+        }
+        private void ShowCategoriesCtrl()
+        {
+            HideAllControls();
+            try
+            {
+                ctrlCategory.Instance.reset();
+                this.pnlModule.Controls.Add(ctrlCategory.Instance);
+                ctrlCategory.Instance.LoadData();
+                ctrlCategory.Instance.Dock = DockStyle.Fill;
+                ctrlCategory.Instance.BringToFront();
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void ShowSuppliersCtrl()
+        {
+            HideAllControls();
+            try
+            {
+                ctrlSuppliers.Instance.reset();
+                this.pnlModule.Controls.Add(ctrlSuppliers.Instance);
+                ctrlSuppliers.Instance.LoadData();
+                ctrlSuppliers.Instance.Dock = DockStyle.Fill;
+                ctrlSuppliers.Instance.BringToFront();
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void ShowProductsCtrl()
+        {
+            HideAllControls();
+            try
+            {
+                ctrlProducts.Instance.reset();
+                this.pnlModule.Controls.Add(ctrlProducts.Instance);
+                ctrlProducts.Instance.LoadData();
+                ctrlProducts.Instance.Dock = DockStyle.Fill;
+                ctrlProducts.Instance.BringToFront();
+            }
+            catch (Exception)
+            {
+            }
         }
         private void ShowHideControls(UserControl currentControl)
         {
@@ -724,11 +758,11 @@ namespace StudentWindowsApplication
         }
         private void SettingsTSItem1_Click(object sender, EventArgs e)
         {
-            TSI_Salary();
+            TSISalary();
         }
         private void TSISettings()
         {
-            HoverColorEffect(menuStrip12);
+            //HoverColorEffect(menuStrip12);
             HideAllControls();
             try
             {
@@ -759,9 +793,9 @@ namespace StudentWindowsApplication
         {
             this.ReloadFormData();
         }
-        private void TSI_Salary()
+        private void TSISalary()
         {
-            HoverColorEffect(menuStrip3);
+            //HoverColorEffect(menuStrip3);
             HideAllControls();
             try
             {
@@ -843,7 +877,7 @@ namespace StudentWindowsApplication
 
         private void menuStrip3_Click(object sender, EventArgs e)
         {
-            TSI_Salary();
+            TSISalary();
         }
 
         private void menuStrip11_MouseHover(object sender, EventArgs e)
@@ -855,7 +889,7 @@ namespace StudentWindowsApplication
         {
             //HoverColorEffect(menuStrip11, true, true);
             //isHoverLock = false;
-            menuStrip11.BackColor = Color.Green;
+            //menuStrip11.BackColor = Color.Green;
         }
         public bool isHoverLock = false;
         private void menuStrip11_MouseLeave(object sender, EventArgs e)
@@ -868,6 +902,64 @@ namespace StudentWindowsApplication
         private void menuStrip12_Click(object sender, EventArgs e)
         {
             TSISettings();
+        }
+
+        private void VerticalNavBarControl_NavigationItemClick(object sender, string item)
+        {
+            // Implement your navigation logic here based on the item clicked
+            switch (item)
+            {
+                case "Home":
+                    ShowAdminHomeForm();
+                    break;
+                case "Students":
+                    ShowStudentsCtrl();
+                    break;
+                case "Classes":
+                    ShowClassesCtrl();
+                    break;
+                case "Sections":
+                    ShowSectionsCtrl();
+                    break;
+                case "Subjects":
+                    ShowSubjectsCtrl();
+                    break;
+                case "TestExam":
+                    ShowExamsTestCtrl();
+                    break;
+                case "Attendance":
+                    ShowAttendanceCtrl();
+                    break;
+                case "Employees":
+                    ShowEmployeesCtrl();
+                    break;
+                case "ExamReport":
+                    ShowExamReportsCtrl();
+                    break;
+                case "Fee":
+                    ShowFeeCtrl();
+                    break;
+                case "Salary":
+                    TSISalary();
+                    break;
+                case "Settings":
+                    TSISettings();
+                    break;
+                case "logout":
+                    logout();
+                    break;
+                case "Categories":
+                    ShowCategoriesCtrl();
+                    break;
+                case "Suppliers":
+                    ShowSuppliersCtrl();
+                    break;
+                case "Products":
+                    ShowProductsCtrl();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

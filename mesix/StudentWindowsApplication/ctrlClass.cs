@@ -235,7 +235,7 @@ namespace StudentWindowsApplication
             }
             else
             {
-                MessageBox.Show("Please Select Data For Delete");
+                MessageBox.Show("No Data Found");
             }
         }
     }

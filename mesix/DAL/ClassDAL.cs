@@ -13,7 +13,7 @@ namespace DAL
 
         public ClassDAL()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public List<SchoolClass> GetClasses()
         {

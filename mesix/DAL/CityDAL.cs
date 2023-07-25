@@ -18,7 +18,7 @@ namespace DAL
         {
             //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); // Add an Application Setting.
             //string connectionString=config.AppSettings.Settings["con"].Value;
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
 
         }
         public List<Cities> GetCities()

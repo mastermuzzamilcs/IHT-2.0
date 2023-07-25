@@ -12,7 +12,7 @@ namespace DAL
         SqlConnection con;
         public EmployeeClass()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public List<EmployeeProp> GetTeachers()
         {

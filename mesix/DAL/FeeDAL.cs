@@ -12,7 +12,7 @@ namespace DAL
 
         public FeeDAL()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public DataTable SearchStudentCnfg(string textToSearch)
         {

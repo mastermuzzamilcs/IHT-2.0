@@ -11,7 +11,7 @@ namespace DAL
         SqlConnection con;
         public SubjectDAL()
         {
-            con = new SqlConnection(base.connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public List<Subject> GetSubject()
         {

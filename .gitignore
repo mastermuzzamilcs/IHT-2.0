@@ -1,2 +1,20 @@
 
 *.sql
+*.cache
+*.json
+mesix/DAL/obj/Release/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+*.props
+*.targets
+/mesix/DataTransferObjects/obj/Release/netstandard2.0
+/mesix/StudentWindowsApplication/obj/Release/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+mesix/StudentWindowsApplication/.vs/StudentWindowsApplication/v17/.suo
+mesix/StudentWindowsApplication/.vs/StudentWindowsApplication/v17/.suo
+*.v2
+mesix/StudentWindowsApplication/.vs/StudentWindowsApplication/DesignTimeBuild/.dtbcache.v2
+mesix/StudentWindowsApplication/.vs/StudentWindowsApplication/v17/.suo
+/mesix/DAL/bin/Debug
+/mesix/DAL/obj/Debug
+/mesix/DataTransferObjects/bin/Debug/netstandard2.0
+/mesix/DataTransferObjects/obj/Debug/netstandard2.0
+/mesix/StudentWindowsApplication/bin/Debug
+/mesix/StudentWindowsApplication/obj/Debug

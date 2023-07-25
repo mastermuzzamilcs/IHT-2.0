@@ -13,7 +13,7 @@ namespace DAL
 
         public StudentDAL()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public DataTable GetStudentList(int pageNumber = 0, int Pagesize = 10)
         {

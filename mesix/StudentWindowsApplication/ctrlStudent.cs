@@ -51,7 +51,6 @@ namespace StudentWindowsApplication
             if (dgvStudents.Rows != null && dgvStudents.Rows.Count > 0)
             {
                 this.dgvStudents.Columns["StudentID"].Visible = false;
-                //this.dgvStudents.Columns["Name"].Width=
             }
 
             ClassDAL cdal = new ClassDAL();
@@ -84,38 +83,10 @@ namespace StudentWindowsApplication
         private void btnSearch_Click(object sender, EventArgs e)
         {
             StudentDAL sdal = new StudentDAL();
-            //EmployeeClass emp = new EmployeeClass();
             string SearchName = txtName.Text;
             int FilterId = Convert.ToInt32(cbxClass.SelectedValue);
             dgvStudents.DataSource = sdal.SearchStudentList(SearchName, FilterId);
             btnNext.Enabled = false;
-
-            //if (FilterId <= 0 && SearchName != string.Empty)
-            //{
-            //    dgvStudents.DataSource = sdal.SearchStudentList(SearchName);
-            //    this.dgvStudents.Columns["StudentID"].Visible = false;
-            //}
-            //else
-            //{
-            //    if ((SearchName == null || SearchName == string.Empty) && FilterId > 0)
-            //    {
-            //        dgvStudents.DataSource = emp.SearchStudentList(FilterId);
-            //        this.dgvStudents.Columns["ID"].Visible = false;
-            //    }
-            //    else
-            //    {
-            //        if (FilterId > 0 && (SearchName != null || SearchName != string.Empty))
-            //        {
-            //            dgvStudents.DataSource = emp.SearchStudentList(SearchName, FilterId);
-            //            this.dgvStudents.Columns["StudentID"].Visible = false;
-            //        }
-            //        else
-            //        {
-            //            dgvStudents.DataSource = sdal.GetStudentList();
-            //            this.dgvStudents.Columns["StudentID"].Visible = false;
-            //        }
-            //    }
-            //}
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -140,34 +111,6 @@ namespace StudentWindowsApplication
             GetStudentRecords();
         }
 
-        private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            PageNumber--;
-            GetStudentRecords();
-            //if (start >= 0 && end >= 10)
-            //{
-            //    start -= 10;
-            //    end -= 10;
-            //    //dgvStudents.DataSource = MethodToGetRecord(start, end);
-            //    lblStartPage.Text = Convert.ToString(start);
-            //    lblEndPage.Text = Convert.ToString(end);
-            //}
-        }
-
-        private void lblForward_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            PageNumber++;
-            GetStudentRecords();
-            //if (start >= 0 && end >= 10)
-            //{
-            //    start -= 10;
-            //    end -= 10;
-            //    //dgvStudents.DataSource = MethodToGetRecord(start, end);
-            //    lblStartPage.Text = Convert.ToString(start);
-            //    lblEndPage.Text = Convert.ToString(end);
-            //}
-        }
-
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             ID = 0;
@@ -182,39 +125,18 @@ namespace StudentWindowsApplication
         {
             PageNumber++;
             GetStudentRecords();
-            //if (start >= 0 && end >= 10)
-            //{
-            //    start -= 10;
-            //    end -= 10;
-            //    //dgvStudents.DataSource = MethodToGetRecord(start, end);
-            //    lblStartPage.Text = Convert.ToString(start);
-            //    lblEndPage.Text = Convert.ToString(end);
-            //}
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
             PageNumber--;
             GetStudentRecords();
-            //if (start >= 0 && end >= 10)
-            //{
-            //    start -= 10;
-            //    end -= 10;
-            //    //dgvStudents.DataSource = MethodToGetRecord(start, end);
-            //    lblStartPage.Text = Convert.ToString(start);
-            //    lblEndPage.Text = Convert.ToString(end);
-            //}
-        }
-
-        private void txtPage_TextChanged(object sender, EventArgs e)
-        {
-            //restrict numeric letters only
-            //if valid page then move to page else set pagenumber
         }
         private void SetPage()
         {
             if (txtPage.Text != null && txtPage.Text != String.Empty)
             {
+                //if valid page then move to page else set pagenumber
                 if (Convert.ToInt32(txtPage.Text) > 0 && Convert.ToInt32(txtPage.Text) <= RecordsCount / PageSize)
                 {
                     PageNumber = Convert.ToInt32(txtPage.Text) - 1;
@@ -225,7 +147,6 @@ namespace StudentWindowsApplication
                     txtPage.Text = (PageNumber + 1).ToString();
                 }
             }
-            //if valid page then move to page else set pagenumber
         }
         private void txtPage_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -234,19 +155,6 @@ namespace StudentWindowsApplication
             {
                 e.Handled = true;
             }
-            else
-            {
-                //if (!(e.KeyChar == (char)(Keys.Back)))
-                //{
-                //    SetPage();
-                //}
-            }
-
-            // only allow one decimal point
-            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
         }
 
         private void txtPage_Leave(object sender, EventArgs e)

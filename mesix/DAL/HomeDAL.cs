@@ -13,7 +13,7 @@ namespace DAL
 
         public HomeDAL()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
 
         public List<Int32> GetAllCounts()

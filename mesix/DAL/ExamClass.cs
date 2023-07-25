@@ -12,7 +12,7 @@ namespace DAL
         SqlConnection con;
         public ExamClass()
         {
-            con = new SqlConnection(connectionstring);
+            con = new SqlConnection(GetDBConnection());
         }
         public void UpdateExamReport(int Id, decimal Obt, string rem)
         {

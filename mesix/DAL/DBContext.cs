@@ -5,7 +5,7 @@ namespace DAL
 {
     public class DBContext
     {
-        public string connectionstring = @"Data Source=DESKTOP-A61AK54\NEWTEST;Initial Catalog=StudentDataBase;Integrated Security=True";// ConfigurationManager.AppSettings["Con1"];           
+        private string connectionstring = @"Data Source=DESKTOP-A61AK54\NEWTEST;Initial Catalog=StudentDataBase;Integrated Security=True";// ConfigurationManager.AppSettings["Con1"];           
         public Roles LoginObj;
 
         public DBContext()
@@ -19,6 +19,10 @@ namespace DAL
             string a = LoginObj.Name;
             int j = LoginObj.LoginId;
             int k = LoginObj.EmpId;
+        }
+        protected string GetDBConnection()
+        {
+            return connectionstring;
         }
     }
 }
